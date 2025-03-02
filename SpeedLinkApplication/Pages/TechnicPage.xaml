@@ -9,6 +9,9 @@
       Title="Главная">
 
     <Grid>
-        
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="Мои заявки"/>
+            <Button Content="Список заявок"/>
+        </StackPanel>
     </Grid>
 </Page>
