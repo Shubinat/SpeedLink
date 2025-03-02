@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpeedLinkApplication.Entities;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -12,6 +13,8 @@ namespace SpeedLinkApplication
     /// Логика взаимодействия для App.xaml
     /// </summary>
     public partial class App : Application
-    {
+    { 
+        public static Entities.SpeedLinkDatabaseEntities Context = new Entities.SpeedLinkDatabaseEntities();
+        public static User AuthUser;
     }
 }

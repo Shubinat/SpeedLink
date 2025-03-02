@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f41ff53f14ca498481f3abcff4f2e1f2" Name="Diagram1">
+        <EntityTypeShape EntityType="SpeedLinkDatabaseModel.Address" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedLinkDatabaseModel.Client" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedLinkDatabaseModel.ClientType" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedLinkDatabaseModel.Equipment" Width="1.5" PointX="5.25" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedLinkDatabaseModel.EquipmentType" Width="1.5" PointX="3" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedLinkDatabaseModel.Order" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedLinkDatabaseModel.OrderEquipment" Width="1.5" PointX="7.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedLinkDatabaseModel.OrderStatus" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedLinkDatabaseModel.Role" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedLinkDatabaseModel.Service" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedLinkDatabaseModel.User" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <AssociationConnector Association="SpeedLinkDatabaseModel.FK_Order_Address1" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedLinkDatabaseModel.FK_Client_ClientType" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedLinkDatabaseModel.FK_Order_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedLinkDatabaseModel.FK_Equipment_EquipmentType" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedLinkDatabaseModel.FK_OrderEquipment_Equipment" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedLinkDatabaseModel.FK_Order_OrderStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedLinkDatabaseModel.FK_Order_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedLinkDatabaseModel.FK_Order_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedLinkDatabaseModel.FK_Order_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedLinkDatabaseModel.FK_OrderEquipment_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedLinkDatabaseModel.FK_User_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

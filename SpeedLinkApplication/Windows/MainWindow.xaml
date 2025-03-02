@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpeedLinkApplication.Windows"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="SpeedLink" MinHeight="450" MinWidth="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" x:Name="GridRowHeader" />
+            <RowDefinition/>
+            <RowDefinition Height="50" x:Name="GridRowFooter"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <Image Source="/Resources/logo.png" Margin="5"/>
+            <TextBlock Text="SpeedLink" Margin="5" FontSize="24" VerticalAlignment="Center" x:Name="TextBlockHeader"/>
+        </StackPanel>
+        <Frame Grid.Row="1" x:Name="FrameMain" ContentRendered="FrameMain_ContentRendered" NavigationUIVisibility="Hidden"/>
+        <Button Width="75" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Content="Назад" x:Name="BtnBack" Click="BtnBack_Click"/>
     </Grid>
 </Window>

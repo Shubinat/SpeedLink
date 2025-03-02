@@ -23,6 +23,30 @@ namespace SpeedLinkApplication.Windows
         public MainWindow()
         {
             InitializeComponent();
+            FrameMain.Navigate(new Pages.AuthPage());
+        }
+
+        private void FrameMain_ContentRendered(object sender, EventArgs e)
+        {
+            if (FrameMain.Content is Pages.AuthPage)
+            {
+                BtnBack.Visibility = Visibility.Collapsed;
+                GridRowFooter.Height = GridRowHeader.Height = 
+                    new GridLength(0, GridUnitType.Pixel);
+            }
+            else
+            {
+                BtnBack.Visibility = Visibility.Visible;
+                GridRowFooter.Height = GridRowHeader.Height =
+    new GridLength(50, GridUnitType.Pixel);
+            }
+            TextBlockHeader.Text = "SpeedLink - " + (FrameMain.Content as Page).Title;
+        }
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (FrameMain.CanGoBack)
+                FrameMain.GoBack();
         }
     }
 }
