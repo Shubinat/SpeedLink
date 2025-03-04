@@ -76,11 +76,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\DispatcherOrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\DispatcherPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TechnicPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddEditOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,6 +106,7 @@
     <Compile Include="Entities\Client.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\AddressPartial.cs" />
     <Compile Include="Entities\ClientType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -128,6 +137,7 @@
     <Compile Include="Entities\OrderEquipment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\OrderPartial.cs" />
     <Compile Include="Entities\OrderStatus.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -146,11 +156,17 @@
     <Compile Include="Pages\AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\DispatcherOrdersPage.xaml.cs">
+      <DependentUpon>DispatcherOrdersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\DispatcherPage.xaml.cs">
       <DependentUpon>DispatcherPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TechnicPage.xaml.cs">
       <DependentUpon>TechnicPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddEditOrderWindow.xaml.cs">
+      <DependentUpon>AddEditOrderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
