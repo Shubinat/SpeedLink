@@ -24,5 +24,15 @@ namespace SpeedLinkApplication.Pages
         {
             InitializeComponent();
         }
+
+        private void BtnMyOrders_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new TechnicOrdersPage());
+        }
+
+        private void BtnNonAttachOrders_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new NonAttachedOrdersPage());
+        }
     }
 }

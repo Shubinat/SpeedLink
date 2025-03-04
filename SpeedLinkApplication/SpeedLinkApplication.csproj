@@ -44,6 +44,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -68,6 +71,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\OrderEquipmentPartial.cs" />
+    <Compile Include="Entities\UserPartial.cs" />
+    <Compile Include="Windows\OrderDetailsWindow.xaml.cs">
+      <DependentUpon>OrderDetailsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SelectEquipmentWindow.xaml.cs">
+      <DependentUpon>SelectEquipmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SetAmountWindow.xaml.cs">
+      <DependentUpon>SetAmountWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TechnicEditOrderWindow.xaml.cs">
+      <DependentUpon>TechnicEditOrderWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Pages\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -81,6 +98,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\DispatcherPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NonAttachedOrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TechnicOrdersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,6 +187,12 @@
     <Compile Include="Pages\DispatcherPage.xaml.cs">
       <DependentUpon>DispatcherPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\NonAttachedOrdersPage.xaml.cs">
+      <DependentUpon>NonAttachedOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TechnicOrdersPage.xaml.cs">
+      <DependentUpon>TechnicOrdersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TechnicPage.xaml.cs">
       <DependentUpon>TechnicPage.xaml</DependentUpon>
     </Compile>
@@ -172,6 +203,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\OrderDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SelectEquipmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SetAmountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TechnicEditOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

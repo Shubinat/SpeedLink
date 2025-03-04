@@ -10,8 +10,8 @@
 
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button Content="Мои заявки"/>
-            <Button Content="Список заявок"/>
+            <Button Content="Мои заявки" x:Name="BtnMyOrders" Click="BtnMyOrders_Click" Width="200"/>
+            <Button Content="Список заявок" x:Name="BtnNonAttachOrders" Click="BtnNonAttachOrders_Click"/>
         </StackPanel>
     </Grid>
 </Page>
