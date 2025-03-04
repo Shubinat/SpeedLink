@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace SpeedLinkApplication.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для DispatcherOrdersPage.xaml
+    /// Логика взаимодействия для TechnicOrdersPage.xaml
     /// </summary>
-    public partial class DispatcherOrdersPage : Page
+    public partial class TechnicOrdersPage : Page
     {
-        public DispatcherOrdersPage()
+        public TechnicOrdersPage()
         {
             InitializeComponent();
             List<Entities.OrderStatus> orderStatuses = App.Context.OrderStatus.ToList();
@@ -32,7 +32,7 @@ namespace SpeedLinkApplication.Pages
 
         private void UpdateGrid()
         {
-            var orders = App.Context.Order.ToList();
+            var orders = App.Context.Order.ToList().Where(x => x.User1 == App.AuthUser).ToList();
 
 
             if (!string.IsNullOrEmpty(SearchTextBox.Text))
@@ -43,12 +43,12 @@ namespace SpeedLinkApplication.Pages
             if (StatusComboBox.SelectedIndex != 0)
                 orders = orders.Where(x => x.OrderStatus == StatusComboBox.SelectedItem).ToList();
 
+
             if (DateFromPicker.SelectedDate.HasValue)
                 orders = orders.Where(x => x.OrderDateTime >= DateFromPicker.SelectedDate).ToList();
 
             if (DateToPicker.SelectedDate.HasValue)
                 orders = orders.Where(x => x.OrderDateTime <= DateToPicker.SelectedDate).ToList();
-
 
             LViewOrders.ItemsSource = orders.OrderByDescending(x => x.OrderDateTime).ToList();
         }
@@ -73,26 +73,27 @@ namespace SpeedLinkApplication.Pages
             UpdateGrid();
         }
 
-        private void NewRequestButton_Click(object sender, RoutedEventArgs e)
-        {
-            Windows.AddEditOrderWindow window = new Windows.AddEditOrderWindow();
-            if(window.ShowDialog() == true)
-            {
-                UpdateGrid();
-            }
-
-        }
-
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            if(LViewOrders.SelectedItem is Order order)
+            if (LViewOrders.SelectedItem is Order order)
             {
-
-                Windows.AddEditOrderWindow window = new Windows.AddEditOrderWindow(order);
-                if (window.ShowDialog() == true)
+                if (order.OrderStatus.Id == 2)
                 {
-                    UpdateGrid();
+                    Windows.TechnicEditOrderWindow window = new Windows.TechnicEditOrderWindow(order);
+                    if (window.ShowDialog() == true)
+                    {
+                        UpdateGrid();
+                    }
                 }
+                else
+                {
+                    Windows.OrderDetailsWindow window = new Windows.OrderDetailsWindow(order);
+                    if (window.ShowDialog() == true)
+                    {
+                        UpdateGrid();
+                    }
+                }
+               
             }
         }
 
@@ -111,8 +112,21 @@ namespace SpeedLinkApplication.Pages
         private void LViewOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var hasSelection = LViewOrders.SelectedItem != null;
-            EditButton.IsEnabled = hasSelection && (LViewOrders.SelectedItem as Order).OrderStatus.Id == 1;
-            CancelButton.IsEnabled = hasSelection && (LViewOrders.SelectedItem as Order).OrderStatus.Id == 1;
+            EditButton.IsEnabled = hasSelection;
+            CancelButton.IsEnabled = hasSelection && (LViewOrders.SelectedItem as Order).OrderStatus.Id <= 2;
+            CompleteButton.IsEnabled = hasSelection && (LViewOrders.SelectedItem as Order).OrderStatus.Id <= 2;
+        }
+
+        private void CompleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (LViewOrders.SelectedItem is Order order)
+            {
+                order.OrderStatus = App.Context.OrderStatus.Find(3);
+                order.CompleteDatetime = DateTime.Now;
+                App.Context.SaveChanges();
+                LViewOrders.SelectedItem = null;
+                UpdateGrid();
+            }
         }
     }
 }

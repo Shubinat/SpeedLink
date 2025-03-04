@@ -1,0 +1,143 @@
+﻿<Page x:Class="SpeedLinkApplication.Pages.NonAttachedOrdersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SpeedLinkApplication.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Список заявок">
+
+    <Grid>
+        <!-- Основной контейнер с тремя строками -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Первая часть (фильтры) -->
+            <RowDefinition Height="*"/>
+            <!-- Вторая часть (ListView) -->
+            <RowDefinition Height="Auto"/>
+            <!-- Третья часть (кнопки) -->
+        </Grid.RowDefinitions>
+
+        <!-- Первая часть: Фильтры -->
+        <Border Grid.Row="0" >
+            <StackPanel Orientation="Horizontal">
+                <!-- TextBox для поиска -->
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <TextBlock Text="Поиск" 
+                               FontSize="12" 
+                               Foreground="#FF555555"
+                                                            Margin="5"/>
+                    <TextBox x:Name="SearchTextBox" 
+                             Width="200"
+                             VerticalAlignment="Center"
+                             Padding="5" TextChanged="SearchTextBox_TextChanged"/>
+                </StackPanel>
+                <!-- Дата заявки с -->
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <TextBlock Text="Дата заявки с" 
+                               FontSize="12" 
+                               Foreground="#FF555555"
+                                                              Margin="5"/>
+                    <DatePicker x:Name="DateFromPicker" 
+                                SelectedDateChanged="DateFromPicker_SelectedDateChanged"
+                                Width="150"
+                                Margin="5"
+                                Height="30"
+                                VerticalContentAlignment="Center"
+                                SelectedDateFormat="Short"
+                                VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Дата заявки по -->
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <TextBlock Text="Дата заявки по" 
+                               FontSize="12" 
+                               Foreground="#FF555555"
+                                                           Margin="5"/>
+                    <DatePicker x:Name="DateToPicker" 
+                                SelectedDateChanged="DateToPicker_SelectedDateChanged"
+                               Width="150"
+                                Margin="5"
+                                Height="30"
+                                VerticalContentAlignment="Center"
+                                SelectedDateFormat="Short"
+                                VerticalAlignment="Center"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+        <!-- Вторая часть: ListView -->
+        <ListView Grid.Row="1" 
+                  Margin="5"
+                  Background="#FFCCCCCC"
+                  BorderBrush="#FFCCCCCC"
+                  SelectionChanged="LViewOrders_SelectionChanged"
+                  x:Name="LViewOrders"
+                  HorizontalContentAlignment="Stretch"
+                  BorderThickness="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="10" Background="White">
+                        <StackPanel Margin="10">
+                            <!-- Дата и время -->
+                            <TextBlock Text="{Binding OrderDateTime,ConverterCulture=ru-RU}" FontSize="14" FontWeight="Bold" Foreground="DarkBlue" />
+
+                            <!-- Имя клиента, номер телефона, email -->
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <TextBlock Text="{Binding Client.FullName}" FontSize="12" FontWeight="SemiBold" />
+                                <TextBlock Text=", " />
+                                <TextBlock Text="{Binding Client.PhoneNumber}" FontSize="12" />
+                                <TextBlock Text=", " />
+                                <TextBlock Text="{Binding Client.Email}" FontSize="12" Foreground="Blue" TextDecorations="Underline" />
+                            </StackPanel>
+
+                            <!-- Адрес -->
+                            <TextBlock Text="{Binding Address.FullName}" FontSize="12" Margin="0,5,0,0" />
+
+                            <!-- Предоставляемая услуга и стоимость -->
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <TextBlock Text="{Binding Service.Name}" FontSize="12" FontWeight="SemiBold" />
+                                <TextBlock Text=" - " />
+                                <TextBlock Text="{Binding Service.Price, StringFormat='{}{0:C}',ConverterCulture=ru-RU}" FontSize="12" Foreground="Green" />
+                            </StackPanel>
+
+                            <!-- Прочие данные -->
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <TextBlock Text="Создана: " FontSize="12" FontWeight="SemiBold" Foreground="Gray" />
+                                <TextBlock Text="{Binding CreationDateTime,ConverterCulture=ru-RU}" FontSize="12" Foreground="Gray" FontStyle="Italic"/>
+                                <TextBlock Text="  Статус заявки: " Foreground="Gray"/>
+                                <TextBlock Text="{Binding OrderText}" FontSize="12" Foreground="Gray" FontStyle="Italic"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Третья часть: Кнопки -->
+        <Border Grid.Row="2" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <!-- Кнопка "Детали" -->
+                <Button x:Name="EditButton" 
+                        Content="Детали" 
+                        Margin="5" 
+                        Padding="10,5"
+                        Width="120"
+                         IsEnabled="False"
+                        Cursor="Hand" Click="EditButton_Click"/>
+
+                <!-- Кнопка "Взять" -->
+                <Button x:Name="AttachButton" 
+                        Content="Взять" 
+                        Margin="5" 
+                        Padding="10,5"
+                        Width="120"
+                        IsEnabled="False"
+                        Cursor="Hand" Click="AttachButton_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

@@ -1,0 +1,102 @@
+﻿<Window x:Class="SpeedLinkApplication.Windows.TechnicEditOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpeedLinkApplication.Windows"
+        mc:Ignorable="d"
+        Title="Данные заявки" Height="380" Width="1015" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="215"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="215"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="AUTO"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <StackPanel HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center" x:Name="SPanelBindable" Width="180">
+                <TextBlock Text="Дата и время заявки" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding OrderDateTime, ConverterCulture=ru-RU}" FontSize="12"  HorizontalAlignment="Right" TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="Услуга" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Service.Name}" FontSize="12"  HorizontalAlignment="Right" TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Service.Price, StringFormat='{}{0:C}',ConverterCulture=ru-RU}" FontSize="12" Foreground="Green"  HorizontalAlignment="Right" TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="Клиент" FontWeight="Bold" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right"  TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Client.ClientType.Name, StringFormat=Тип клиента:{0}}" HorizontalAlignment="Right" TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Client.FullName}" FontSize="12"  HorizontalAlignment="Right" TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Client.PhoneNumber}" FontSize="12"  HorizontalAlignment="Right" TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Client.Email}" FontSize="12" Foreground="Blue" TextDecorations="Underline"  HorizontalAlignment="Right" TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock FontWeight="Bold" HorizontalAlignment="Right" Text="Адрес" Margin="5" VerticalAlignment="Center"  TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Address.Region, StringFormat=Регион: {0}}" FontSize="12"   HorizontalAlignment="Right" TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Address.City, StringFormat=Населенный пункт: {0}}" FontSize="12"  HorizontalAlignment="Right"  TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Address.Street, StringFormat=Улица: {0}}" FontSize="12"   HorizontalAlignment="Right" TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Address.Home, StringFormat=Дом: {0}}" FontSize="12"   HorizontalAlignment="Right" TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding Address.Room, StringFormat=Квартира: {0}}" FontSize="12"  HorizontalAlignment="Right"  TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock FontWeight="Bold" HorizontalAlignment="Right" Text="Создана" Margin="5" VerticalAlignment="Center"  TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding CreationDateTime, ConverterCulture=ru-RU}" FontSize="12"  HorizontalAlignment="Right"  TextWrapping="Wrap" TextAlignment="Right"/>
+                <TextBlock Text="{Binding User.FullName}" FontSize="12"  HorizontalAlignment="Right"  TextWrapping="Wrap" TextAlignment="Right"/>
+            </StackPanel>
+        </ScrollViewer>
+       
+
+        <ListView Grid.Column="1" 
+                  Margin="10"
+                  Background="White"
+                  BorderBrush="#FFCCCCCC"
+                  BorderThickness="1"
+                  x:Name="LViewOrderEquipment"
+                  HorizontalContentAlignment="Stretch">
+            <ListView.Resources>
+                <Style TargetType="GridViewColumnHeader">
+                    <Setter Property="Background" Value="#6200EA" />
+                    <!-- Фиолетовый акцентный цвет -->
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="BorderThickness" Value="0" />
+                </Style>
+
+                <!-- Стиль для строк ListView -->
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="BorderBrush" Value="#E0E0E0" />
+                    <Setter Property="BorderThickness" Value="0 0 0 1" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="Margin" Value="0 2" />
+                </Style>
+                <Style TargetType="ListView">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Padding" Value="10" />
+                </Style>
+
+            </ListView.Resources>
+            <!-- Пример колонок -->
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn Header="Оборудование" DisplayMemberBinding="{Binding Equipment.Name}"  Width="130"/>
+                    <GridViewColumn Header="Количество" DisplayMemberBinding="{Binding Amount}" Width="130"/>
+                    <GridViewColumn Header="Стоимость" DisplayMemberBinding="{Binding Equipment.Price, StringFormat={}{0:C},ConverterCulture=ru-RU}" Width="130"/>
+                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Sum, StringFormat={}{0:C},ConverterCulture=ru-RU}" Width="130"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1">
+            <Button Content="Удалить" x:Name="BtnRemoveEq" Width="200" Click="BtnRemoveEq_Click"/>
+            <Button Content="Добавить" x:Name="BtnAddEq" Width="200" Click="BtnAddEq_Click"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="2" Margin="5">
+            <TextBlock Text="Описание" FontWeight="DemiBold" Margin="5"/>
+            <TextBox Width="auto" Height="265" x:Name="TBoxDescription" TextWrapping="Wrap"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="2">
+            <Button Content="Сохранить" x:Name="BtnSave" Width="150" Click="BtnSave_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
