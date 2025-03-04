@@ -24,5 +24,10 @@ namespace SpeedLinkApplication.Pages
         {
             InitializeComponent();
         }
+
+        private void BtnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new DispatcherOrdersPage());
+        }
     }
 }
