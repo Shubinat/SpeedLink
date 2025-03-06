@@ -1,4 +1,5 @@
 ﻿using SpeedLinkApplication.Entities;
+using SpeedLinkApplication.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,11 @@ using System.Windows.Shapes;
 namespace SpeedLinkApplication.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для DispatcherOrdersPage.xaml
+    /// Логика взаимодействия для AdminOrdersPage.xaml
     /// </summary>
-    public partial class DispatcherOrdersPage : Page
+    public partial class AdminOrdersPage : Page
     {
-        public DispatcherOrdersPage()
+        public AdminOrdersPage()
         {
             InitializeComponent();
             List<Entities.OrderStatus> orderStatuses = App.Context.OrderStatus.ToList();
@@ -49,7 +50,7 @@ namespace SpeedLinkApplication.Pages
             if (DateToPicker.SelectedDate.HasValue)
                 orders = orders.Where(x => x.OrderDateTime.Date <= DateToPicker.SelectedDate).ToList();
 
-
+            ChartButton.IsEnabled = orders.Count > 0;
             LViewOrders.ItemsSource = orders.OrderByDescending(x => x.OrderDateTime).ToList();
         }
 
@@ -73,22 +74,17 @@ namespace SpeedLinkApplication.Pages
             UpdateGrid();
         }
 
-        private void NewRequestButton_Click(object sender, RoutedEventArgs e)
+        private void LViewOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Windows.AddEditOrderWindow window = new Windows.AddEditOrderWindow();
-            if(window.ShowDialog() == true)
-            {
-                UpdateGrid();
-            }
-
+            var hasSelection = LViewOrders.SelectedItem != null;
+            DetailsButton.IsEnabled = hasSelection;
         }
 
-        private void EditButton_Click(object sender, RoutedEventArgs e)
+        private void DetailsButton_Click(object sender, RoutedEventArgs e)
         {
             if(LViewOrders.SelectedItem is Order order)
             {
-
-                Windows.AddEditOrderWindow window = new Windows.AddEditOrderWindow(order);
+                Windows.OrderDetailsWindow window = new Windows.OrderDetailsWindow(order);
                 if (window.ShowDialog() == true)
                 {
                     UpdateGrid();
@@ -96,23 +92,16 @@ namespace SpeedLinkApplication.Pages
             }
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void ChartButton_Click(object sender, RoutedEventArgs e)
         {
-            if (LViewOrders.SelectedItem is Order order)
+            var orders = LViewOrders.ItemsSource as List<Order>;
+            if(orders.Count > 0)
             {
-                order.OrderStatus = App.Context.OrderStatus.Find(4);
-                order.CompleteDatetime = DateTime.Now;
-                App.Context.SaveChanges();
-                LViewOrders.SelectedItem = null;
-                UpdateGrid();
-            }
-        }
+                OrderChartWindow window = new OrderChartWindow(orders);
+                if(window.ShowDialog() == true) {
 
-        private void LViewOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var hasSelection = LViewOrders.SelectedItem != null;
-            EditButton.IsEnabled = hasSelection && (LViewOrders.SelectedItem as Order).OrderStatus.Id == 1;
-            CancelButton.IsEnabled = hasSelection && (LViewOrders.SelectedItem as Order).OrderStatus.Id == 1;
+                }
+            }
         }
     }
 }

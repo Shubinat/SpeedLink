@@ -24,6 +24,8 @@ namespace SpeedLinkApplication.Windows
         public OrderDetailsWindow(Order order)
         {
             InitializeComponent();
+            BtnPrint.Visibility = App.AuthUser.Role.Id == 2 & order.OrderStatus.Id <= 2 ? Visibility.Collapsed:
+                Visibility.Visible;
             string html = "<!DOCTYPE html>\r\n" +
                 "<html lang=\"ru\">" +
                 "\r\n<head>\r\n    " +

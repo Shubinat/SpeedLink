@@ -13,6 +13,7 @@
             <Button Content="Список пользователей" Name="BtnUsers"  Width="200" Click="BtnUsers_Click"/>
             <Button Content="Список оборудования" Name="BtnEquipments" Click="BtnEquipments_Click"/>
             <Button Content="Список услуг" Name="BtnServices" Click="BtnServices_Click" />
+            <Button Content="Список заявок" Name="BtnOrders" Click="BtnOrders_Click"/>
         </StackPanel>
     </Grid>
 </Page>

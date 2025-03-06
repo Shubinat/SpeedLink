@@ -39,5 +39,10 @@ namespace SpeedLinkApplication.Pages
         {
             NavigationService.Navigate(new Pages.UsersPage());
         }
+
+        private void BtnOrders_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.AdminOrdersPage());
+        }
     }
 }

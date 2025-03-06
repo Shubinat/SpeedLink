@@ -40,10 +40,10 @@ namespace SpeedLinkApplication.Pages
 
 
             if (DateFromPicker.SelectedDate.HasValue)
-                orders = orders.Where(x => x.OrderDateTime >= DateFromPicker.SelectedDate).ToList();
+                orders = orders.Where(x => x.OrderDateTime.Date >= DateFromPicker.SelectedDate).ToList();
 
             if (DateToPicker.SelectedDate.HasValue)
-                orders = orders.Where(x => x.OrderDateTime <= DateToPicker.SelectedDate).ToList();
+                orders = orders.Where(x => x.OrderDateTime.Date <= DateToPicker.SelectedDate).ToList();
 
             LViewOrders.ItemsSource = orders.OrderByDescending(x => x.OrderDateTime).ToList();
         }
@@ -68,7 +68,7 @@ namespace SpeedLinkApplication.Pages
             if (LViewOrders.SelectedItem is Order order)
             {
 
-                Windows.AddEditOrderWindow window = new Windows.AddEditOrderWindow(order);
+                Windows.OrderDetailsWindow window = new Windows.OrderDetailsWindow(order);
                 if (window.ShowDialog() == true)
                 {
                     UpdateGrid();
