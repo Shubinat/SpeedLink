@@ -69,7 +69,7 @@ namespace SpeedLinkApplication.Pages
             var isDeleted = selectedItem?.IsDeleted == true;
             var enabled = service != null;
             BtnEdit.IsEnabled = enabled;
-            BtnDelete.IsEnabled = enabled;
+            BtnDelete.IsEnabled = enabled && !isDeleted;
         }
 
         private void ChBoxShowDeleted_Click(object sender, RoutedEventArgs e)

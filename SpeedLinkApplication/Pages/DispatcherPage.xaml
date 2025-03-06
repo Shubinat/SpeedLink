@@ -11,8 +11,8 @@
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Content="Список заявок"  Width="200" x:Name="BtnOrder" Click="BtnOrder_Click"/>
-            <Button Content="Список клиентов"/>
-            <Button Content="Список адресов"/>
+            <Button Content="Список клиентов" x:Name="BtnClient" Click="BtnClient_Click"/>
+            <Button Content="Список адресов" x:Name="BtnAddress" Click="BtnAddress_Click"/>
         </StackPanel>
     </Grid>
 </Page>

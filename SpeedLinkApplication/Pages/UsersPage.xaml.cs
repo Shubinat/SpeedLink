@@ -71,7 +71,7 @@ namespace SpeedLinkApplication.Pages
             var isDeleted = selectedItem?.IsDeleted == true;
             var enabled = user != null;
             BtnEdit.IsEnabled = enabled;
-            BtnDelete.IsEnabled = enabled;
+            BtnDelete.IsEnabled = enabled && !isDeleted;
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)

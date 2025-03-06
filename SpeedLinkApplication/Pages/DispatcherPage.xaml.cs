@@ -29,5 +29,15 @@ namespace SpeedLinkApplication.Pages
         {
             NavigationService.Navigate(new DispatcherOrdersPage());
         }
+
+        private void BtnClient_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ClientPage());
+        }
+
+        private void BtnAddress_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddressPage());
+        }
     }
 }
