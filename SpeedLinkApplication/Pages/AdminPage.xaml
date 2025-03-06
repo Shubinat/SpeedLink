@@ -10,9 +10,9 @@
 
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button Content="Список пользователей"  Width="200"/>
-            <Button Content="Список оборудования"/>
-            <Button Content="Список услуг"/>
+            <Button Content="Список пользователей" Name="BtnUsers"  Width="200" Click="BtnUsers_Click"/>
+            <Button Content="Список оборудования" Name="BtnEquipments" Click="BtnEquipments_Click"/>
+            <Button Content="Список услуг" Name="BtnServices" Click="BtnServices_Click" />
         </StackPanel>
     </Grid>
 </Page>
