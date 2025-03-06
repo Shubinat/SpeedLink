@@ -24,5 +24,20 @@ namespace SpeedLinkApplication.Pages
         {
             InitializeComponent();
         }
+
+        private void BtnServices_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.ServicePage());
+        }
+
+        private void BtnEquipments_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.EquipmentPage());
+        }
+
+        private void BtnUsers_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.UsersPage());
+        }
     }
 }
