@@ -154,6 +154,13 @@
                         Width="120"
                          IsEnabled="False"
                         Cursor="Hand" Click="ChartButton_Click"/>
+                <Button x:Name="ExcelButton" 
+                        Content="Отчет" 
+                        Margin="5" 
+                        Padding="10,5"
+                        Width="120"
+                         IsEnabled="False"
+                        Cursor="Hand" Click="ExcelButton_Click"/>
             </StackPanel>
         </Border>
     </Grid>
