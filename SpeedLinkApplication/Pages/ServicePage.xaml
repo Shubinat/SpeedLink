@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5">
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                 <TextBlock VerticalAlignment="Center">Поиск:</TextBlock>
                 <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"></TextBox>
@@ -40,8 +40,8 @@
         <CheckBox Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Показать удаленные записи" Margin="5" x:Name="ChBoxShowDeleted" Click="ChBoxShowDeleted_Click"  VerticalContentAlignment="Center"/>
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
-                <Button Name="BtnEdit" Width="150" Height="30" IsEnabled="False" Click="BtnEdit_Click">Редактировать</Button>
                 <Button Name="BtnDelete" Width="150" Height="30" IsEnabled="False" Click="BtnDelete_Click">Удалить</Button>
+                <Button Name="BtnEdit" Width="150" Height="30" IsEnabled="False" Click="BtnEdit_Click">Редактировать</Button>
                 <Button Name="BtnAdd" Width="150" Height="30" Click="BtnAdd_Click">Добавить</Button>
             </StackPanel>
         </StackPanel>
